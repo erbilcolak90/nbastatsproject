@@ -1,20 +1,20 @@
 package com.stats.nbastatsbomb.entities;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "stats")
 public class Stats {
 
     @Id
-    @Column(name = "Index")
-    private int index;
+    @Column(name = "id")
+    private int id;
     @Column(name = "player_name")
     private String player_name;
     @Column(name = "team_abbreviation")
