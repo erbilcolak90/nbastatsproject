@@ -1,5 +1,6 @@
 package com.stats.nbastatsbomb.entities;
 
+import com.stats.nbastatsbomb.enums.TeamNames;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "player")
-public class Player {
+@Table(name = "teams")
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
-    @Column(name = "full_name")
-    private String player_name;
+    private String id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "team_name")
+    private TeamNames teamName;
 }

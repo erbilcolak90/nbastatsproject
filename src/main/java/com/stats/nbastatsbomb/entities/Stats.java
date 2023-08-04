@@ -17,8 +17,8 @@ public class Stats {
     private int id;
     @Column(name = "player_name")
     private String player_name;
-    @Column(name = "team_abbreviation")
-    private String team_abbreviation;
+    @Column(name = "team")
+    private String team;
     @Column(name = "age")
     private int age;
     @Column(name = "player_height")
