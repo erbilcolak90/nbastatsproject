@@ -14,11 +14,10 @@ import lombok.NoArgsConstructor;
 public class Team {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private String id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "team_name")
-    private TeamNames teamName;
+    @Column(name = "name")
+    private String teamName;
 }

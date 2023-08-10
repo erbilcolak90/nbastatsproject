@@ -2,7 +2,10 @@ package com.stats.nbastatsbomb.mapper;
 
 import com.stats.nbastatsbomb.entities.Player;
 import com.stats.nbastatsbomb.entities.Stats;
+import com.stats.nbastatsbomb.entities.StatsElasticsearch;
+import com.stats.nbastatsbomb.entities.Team;
 import com.stats.nbastatsbomb.payloads.StatsPayload;
+import com.stats.nbastatsbomb.payloads.TeamPayload;
 import com.stats.nbastatsbomb.payloads.TeamRosterPayload;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -22,5 +25,9 @@ public class MapperService {
 
     public TeamRosterPayload convertPlayerToTeamRosterPayload(Player player){
         return modelMapper.map(player, TeamRosterPayload.class);
+    }
+
+    public TeamPayload convertTeamToTeamPayload(Team dbTeam) {
+        return modelMapper.map(dbTeam, TeamPayload.class);
     }
 }
