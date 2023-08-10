@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Names Autocomplete</title>
+</head>
+<body>
+<h1>Player Names Autocomplete</h1>
+<input type="text" id="playerNameInput" oninput="fetchSuggestions()">
+<ul id="suggestions">
+    <li th:each="suggestion : ${suggestions}">
+        <a th:href="@{|/player_stats?player_name=${suggestion.player_name}|}" th:text="${suggestion.player_name}"></a>
+    </li>
+</ul>
+
+<script th:inline="javascript">
+        /*<![CDATA[*/
+        function fetchSuggestions() {
+            var input = document.getElementById('playerNameInput').value;
+            if (input.length >= 3) {
+                fetch('/search_results?player_name=' + input)
+                    .then(response => response.json())
+                    .then(data => displaySuggestions(data));
+            }
+        }
+
+        function displaySuggestions(suggestions) {
+            var suggestionsList = document.getElementById('suggestions');
+            suggestionsList.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '/player_stats?player_name=' + suggestion.player_name;
+                a.textContent = suggestion.player_name;
+                li.appendChild(a);
+                suggestionsList.appendChild(li);
+            });
+        }
+        /*]]>*/
+    </script>
+</body>
+</html>

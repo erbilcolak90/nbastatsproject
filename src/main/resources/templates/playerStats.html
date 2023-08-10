@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Stats</title>
+  <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Player Stats for <span th:text="${player_name}"></span></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Season</th>
+    <th>Games Played</th>
+    <th>Points</th>
+    <th>Rebounds</th>
+    <th>Assists</th>
+    <th>Net Rating</th>
+    <th>Offensive Rebound %</th>
+    <th>Defensive Rebound %</th>
+    <th>Usage %</th>
+    <th>TS %</th>
+    <th>AST %</th>
+    <!-- Diğer alanlar -->
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="stats : ${statsList}">
+    <td th:text="${stats.season}"></td>
+    <td th:text="${stats.games_played}"></td>
+    <td th:text="${stats.points}"></td>
+    <td th:text="${stats.rebounds}"></td>
+    <td th:text="${stats.assists}"></td>
+    <td th:text="${stats.net_rating}"></td>
+    <td th:text="${stats.offensive_rebound_pct}"></td>
+    <td th:text="${stats.defensive_rebound_pct}"></td>
+    <td th:text="${stats.usg_pct}"></td>
+    <td th:text="${stats.ts_pct}"></td>
+    <td th:text="${stats.ast_pct}"></td>
+    <!-- Diğer alanlar -->
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/playerNames}">Back to Player Names</a>
+</body>
+</html>
