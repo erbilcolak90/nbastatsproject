@@ -1,6 +1,5 @@
 package com.stats.nbastatsbomb.entities;
 
-import com.stats.nbastatsbomb.enums.TeamNames;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

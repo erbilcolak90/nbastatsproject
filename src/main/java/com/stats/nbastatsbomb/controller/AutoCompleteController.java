@@ -18,7 +18,6 @@ import java.util.List;
 public class AutoCompleteController {
 
     private final StatsService statsService;
-
     @GetMapping("/search_results")
     public ResponseEntity<List<StatsElasticsearch>> search_results(@RequestParam String player_name){
         return ResponseEntity.ok(statsService.searchStatsByPlayerName(player_name));

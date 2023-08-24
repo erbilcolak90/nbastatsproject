@@ -47,7 +47,7 @@ public class StatsService {
 
     public List<StatsPayload> getTeamPlayersStatsBySeason(GetTeamPlayersStatsBySeasonInput getTeamPlayersStatsBySeasonInput) {
 
-        List<Stats> teamStats = statsRepository.findByTeamNameAndSeason(getTeamPlayersStatsBySeasonInput.getTeamName(),getTeamPlayersStatsBySeasonInput.getSeason());
+        List<Stats> teamStats = statsRepository.findByTeamNameAndSeason(getTeamPlayersStatsBySeasonInput.getTeamName(), getTeamPlayersStatsBySeasonInput.getSeason());
 
         return teamStats.stream().map(mapperService::convertStatsToStatsPayload).toList();
     }
@@ -77,14 +77,21 @@ public class StatsService {
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        Page<Stats> statsPage = statsRepository.findAllByCustomQuery(column,pageable);
+        Page<Stats> statsPage = statsRepository.findAllByCustomQuery(column, pageable);
 
         return statsPage.map(mapperService::convertStatsToStatsPayload);
     }
 
-    public List<StatsElasticsearch> searchStatsByPlayerName(String player_name){
+    public List<StatsPayload> getPlayerDetailsByPlayerName(String player_name) {
 
-        List<StatsElasticsearch> statsElasticsearchList= statsElasticsearchRepository.findByCustomPlayerNameStartsWith(player_name);
+        List<Stats> playerStats = findByPlayerName(player_name);
+
+        return playerStats.stream().map(mapperService::convertStatsToStatsPayload).toList();
+    }
+
+    public List<StatsElasticsearch> searchStatsByPlayerName(String player_name) {
+
+        List<StatsElasticsearch> statsElasticsearchList = statsElasticsearchRepository.findByCustomPlayerNameStartsWith(player_name);
 
         // Map with player_name
         Map<String, List<StatsElasticsearch>> groupedByPlayerName = statsElasticsearchList.stream()
@@ -101,12 +108,5 @@ public class StatsService {
                 .collect(Collectors.toList());
 
         return playerNamesAndIdsList;
-    }
-
-    public List<StatsPayload> getPlayerDetailsByPlayerName(String player_name) {
-
-        List<Stats> playerStats = findByPlayerName(player_name);
-
-        return playerStats.stream().map(mapperService::convertStatsToStatsPayload).toList();
     }
 }
