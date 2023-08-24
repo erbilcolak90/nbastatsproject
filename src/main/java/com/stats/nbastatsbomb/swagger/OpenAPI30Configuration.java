@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
         scheme = "Bearer",
         in = SecuritySchemeIn.HEADER
 */
-        name = "bearer Auth",
-        bearerFormat = "JWT",
+        /*name = "bearer Auth",
+        bearerFormat = "JWT",*/
         type = SecuritySchemeType.HTTP,
-        scheme =  "bearer",
+        //scheme =  "bearer",
         in = SecuritySchemeIn.HEADER
 
 

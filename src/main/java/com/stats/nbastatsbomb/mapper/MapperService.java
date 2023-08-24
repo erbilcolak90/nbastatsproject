@@ -1,9 +1,10 @@
 package com.stats.nbastatsbomb.mapper;
 
+import com.google.gson.JsonObject;
 import com.stats.nbastatsbomb.entities.Player;
 import com.stats.nbastatsbomb.entities.Stats;
-import com.stats.nbastatsbomb.entities.StatsElasticsearch;
 import com.stats.nbastatsbomb.entities.Team;
+import com.stats.nbastatsbomb.payloads.TeamStatsThirdPartyPayload;
 import com.stats.nbastatsbomb.payloads.StatsPayload;
 import com.stats.nbastatsbomb.payloads.TeamPayload;
 import com.stats.nbastatsbomb.payloads.TeamRosterPayload;
@@ -29,5 +30,9 @@ public class MapperService {
 
     public TeamPayload convertTeamToTeamPayload(Team dbTeam) {
         return modelMapper.map(dbTeam, TeamPayload.class);
+    }
+
+    public TeamStatsThirdPartyPayload convertJsonObjectToTeamStats(JsonObject jsonObject){
+        return modelMapper.map(jsonObject, TeamStatsThirdPartyPayload.class);
     }
 }
